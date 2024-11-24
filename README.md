@@ -1,6 +1,6 @@
-# vue3-start-template
+# AURA PORTAL
 
-<h1 align="center"><a href="https://github.com/huatten/vue3-start-template" target="_blank">Vite4 - Vue3 - Pinia Start Template</a></h1>
+<h1 align="center"><a href="https://github.com/huatten/vue3-start-template" target="_blank">Vite4 - Vue3 - Pinia </a></h1>
 
 <p align="center">
   <a href="https://nodejs.org/en/about/releases/">
@@ -29,9 +29,7 @@
 
 
 
-### 介绍 📖
 
-vue3-start-template 基于 Vue3.3、Vite4、Pinia 开发构建用于初始化项目的模板。
 
 ### 特性概览 🎨
 
