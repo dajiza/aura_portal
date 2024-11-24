@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="form-title">Interested? Have a feature request? Reach out to us.</div>
-        <a-form class="form" :model="formState" layout="vertical" :rules="rules" ref="formRef">
+        <a-form ref="formRef" class="form" :model="formState" layout="vertical" :rules="rules">
             <a-form-item label="Your Name" name="name">
                 <a-input v-model:value="formState.name" placeholder="Your Name" />
             </a-form-item>
@@ -64,7 +64,7 @@
     </a-spin>
 </template>
 <script setup>
-    import { computed, onMounted, ref, toRaw, defineProps, watch } from 'vue';
+    import { ref } from 'vue';
     import { message } from 'ant-design-vue';
     import axios from 'axios';
 
@@ -99,9 +99,9 @@
             message.warning('Please input correct email');
             return;
         }
-        const response = await axios({
-            url: `http://localhost:3000/api/portal-email`,
-            // url: `${import.meta.env.VITE_APP_API_URL}/api/create-user`,
+        await axios({
+            // url: `http://localhost:3000/api/portal-email`,
+            url: `${import.meta.env.VITE_APP_API_URL}/api/create-user`,
             method: 'POST',
             headers: {
                 // Authorization: `Bearer ${authInfo.accessToken}`,
@@ -116,9 +116,9 @@
         formRef.value
             .validate()
             .then(async () => {
-                const response = await axios({
-                    url: `http://localhost:3000/api/portal-email`,
-                    // url: `${import.meta.env.VITE_APP_API_URL}/api/create-user`,
+                await axios({
+                    // url: `http://localhost:3000/api/portal-email`,
+                    url: `${import.meta.env.VITE_APP_API_URL}/api/create-user`,
                     method: 'POST',
                     headers: {
                         // Authorization: `Bearer ${authInfo.accessToken}`,
@@ -147,9 +147,9 @@
         .content {
             display: flex;
             align-items: center;
-            margin: 0 auto;
             max-width: 1200px;
             height: 122px;
+            margin: 0 auto;
             .logo1 {
                 width: 66px;
             }
@@ -165,37 +165,36 @@
         background-size: cover;
         .slide-inner {
             display: flex;
-            align-items: center;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            margin: 0 auto;
             max-width: 1200px;
             height: 100%;
+            margin: 0 auto;
             .row1 {
+                font-size: 60px;
+                font-weight: bold;
                 color: #00796b;
                 word-break: break-all;
-                font-weight: bold;
-                font-size: 60px;
             }
             .row2 {
-                color: #00796b;
-                font-weight: 500;
                 font-size: 20px;
+                font-weight: 500;
+                color: #00796b;
             }
         }
     }
     .container {
+        max-width: 1200px;
         margin: 0 auto;
         margin-top: 40px;
-        max-width: 1200px;
-
         .tip {
-            color: $color-text-secondary;
             font-size: 14px;
+            color: $color-text-secondary;
         }
         .title {
-            color: $color-text;
             font-size: 14px;
+            color: $color-text;
         }
         .img-wrap {
             display: flex;
@@ -208,23 +207,23 @@
         }
     }
     .form-title {
-        margin: 0 auto;
         max-width: 1200px;
-        font-weight: bold;
+        margin: 0 auto;
         font-size: 30px;
+        font-weight: bold;
     }
     .form {
-        margin: 40px auto 0;
-        padding: 20px 30px;
         max-width: 1200px;
+        padding: 20px 30px;
+        margin: 40px auto 0;
         border: 1px solid #d9d9d9;
         border-radius: 12px;
     }
     .copy {
-        margin: 0 auto;
         padding: 60px 0;
-        color: rgba(60, 60, 67, 0.6);
-        text-align: center;
+        margin: 0 auto;
         font-size: 13px;
+        color: rgb(60 60 67 / 60%);
+        text-align: center;
     }
 </style>
