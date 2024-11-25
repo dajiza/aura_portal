@@ -101,7 +101,7 @@
         }
         await axios({
             // url: `http://localhost:3000/api/portal-email`,
-            url: `dashboard.aura-cure.com/api/portal-email`,
+            url: `https://dashboard.aura-cure.com/api/portal-email`,
             method: 'POST',
             headers: {
                 // Authorization: `Bearer ${authInfo.accessToken}`,
@@ -118,7 +118,7 @@
             .then(async () => {
                 await axios({
                     // url: `http://localhost:3000/api/portal-email`,
-                    url: `dashboard.aura-cure.com/api/portal-email`,
+                    url: `https://dashboard.aura-cure.com/api/portal-email`,
                     method: 'POST',
                     headers: {
                         // Authorization: `Bearer ${authInfo.accessToken}`,
