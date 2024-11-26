@@ -226,4 +226,22 @@
         color: rgb(60 60 67 / 60%);
         text-align: center;
     }
+
+    @media screen and (width <= 451px) {
+        .nav {
+            padding: 0 20px;
+        }
+        .slide {
+            padding: 0 20px;
+            .row1 {
+                font-size: 46px !important;
+            }
+            .row2 {
+                font-size: 16px !important;
+            }
+        }
+        .container {
+            padding: 0 20px;
+        }
+    }
 </style>
