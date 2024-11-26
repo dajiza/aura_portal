@@ -243,5 +243,9 @@
         .container {
             padding: 0 20px;
         }
+        .form-title {
+            padding: 0 20px;
+            font-size: 24px;
+        }
     }
 </style>
