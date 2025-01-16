@@ -102,6 +102,7 @@
     import { createClient as createPropelAuthClient } from '@propelauth/javascript';
 
     const authClient = createPropelAuthClient({
+        authUrl: 'https://www.aura-cure.com',
         enableBackgroundTokenRefresh: true,
     });
 
