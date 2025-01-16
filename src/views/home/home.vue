@@ -10,15 +10,47 @@
             <div class="slide-inner">
                 <div class="row1">EMR Software & Platform</div>
                 <div class="row1">For Acupuncture/TCM Clinics</div>
-                <div class="row2" style="margin-top: 20px">Join Our Waitlist for Early Access!</div>
-                <div class="row2">Sign up today and enjoy an <span style="color: #8bc34a">exclusive 5-day free trial</span> when we launch</div>
-                <div style="margin-top: 40px">
-                    <a-input v-model:value="email" placeholder="Your Email" style="width: 250px" />
-                    <a-button type="primary" style="margin-left: 20px" @click="submitEmail">Submit</a-button>
+                <a-button class="free" type="primary" @click="gotoSign">Try it for FREE</a-button>
+                <div class="row2">And get 25% OFF your subscription by sending us a feature request down below</div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="container-title">Plans & Pricing</div>
+            <div class="stripe">
+                <div class="item">
+                    <img class="icon" src="/src/assets/img/s1.png" alt="" />
+                    <div class="info">
+                        <div class="name">
+                            5 day free trial
+                            <span class="name-tip">then $45 per month</span>
+                        </div>
+                        <div class="content">
+                            Perfect for solo practitioners, offering essential features like patient management, prebuilt TCM note templates, a
+                            comprehensive TCM database, online profile listing, patient portal, and communication tools.
+                        </div>
+                        <a-button class="stripe-btn" @click="gotoSign">Try Solo</a-button>
+                        <div class="hint">Hint: Send us a feature request to receive 25% OFF for your first month subscription.</div>
+                    </div>
+                </div>
+                <div class="item" style="margin-top: 80px">
+                    <img class="icon" src="/src/assets/img/s2.png" alt="" />
+                    <div class="info">
+                        <div class="name">
+                            7 day free trial
+                            <span class="name-tip">then $90 per month</span>
+                        </div>
+                        <div class="content">
+                            Ideal for ambitious solo practitioners or clinics with multiple practitioners. Enjoy everything in Solo, plus advanced
+                            features like flexible note templates, detailed reports, staff management, billing & sales, and more.
+                        </div>
+                        <a-button class="stripe-btn" @click="gotoSign">Try Growth</a-button>
+                        <div class="hint">Hint: Send us a feature request to receive 25% OFF for your first 3 months subscription.</div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="container">
+            <div class="container-title">Key features</div>
             <div class="tip">TCM Focused EMR Features</div>
             <div class="title">Patient Management</div>
             <div class="img-wrap">
@@ -67,9 +99,15 @@
     import { ref } from 'vue';
     import { message } from 'ant-design-vue';
     import axios from 'axios';
+    import { createClient as createPropelAuthClient } from '@propelauth/javascript';
+
+    const authClient = createPropelAuthClient({
+        authUrl: import.meta.env.VITE_APP_PROPELAUTH_URL,
+        enableBackgroundTokenRefresh: true,
+    });
 
     let spinning = ref(false);
-    let email = ref('');
+    // let email = ref('');
     let formState = ref({
         name: '',
         clinic_name: '',
@@ -89,28 +127,31 @@
     };
     const formRef = ref();
 
-    const submitEmail = async () => {
-        if (!email.value) {
-            message.warning('Please input email');
-            return;
-        }
-        let emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if (!emailRegex.test(email.value)) {
-            message.warning('Please input correct email');
-            return;
-        }
-        await axios({
-            // url: `http://localhost:3000/api/portal-email`,
-            url: `https://dashboard.aura-cure.com/api/portal-email`,
-            method: 'POST',
-            headers: {
-                // Authorization: `Bearer ${authInfo.accessToken}`,
-                'Content-type': 'application/json',
-            },
-            params: { email: email.value },
-        });
-        message.success('Thank you for your interest!');
+    const gotoSign = async () => {
+        authClient.redirectToSignupPage();
     };
+    // const submitEmail = async () => {
+    //     if (!email.value) {
+    //         message.warning('Please input email');
+    //         return;
+    //     }
+    //     let emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    //     if (!emailRegex.test(email.value)) {
+    //         message.warning('Please input correct email');
+    //         return;
+    //     }
+    //     await axios({
+    //         // url: `http://localhost:3000/api/portal-email`,
+    //         url: `https://dashboard.aura-cure.com/api/portal-email`,
+    //         method: 'POST',
+    //         headers: {
+    //             // Authorization: `Bearer ${authInfo.accessToken}`,
+    //             'Content-type': 'application/json',
+    //         },
+    //         params: { email: email.value },
+    //     });
+    //     message.success('Thank you for your interest!');
+    // };
     const onSubmit = () => {
         spinning.value = true;
         formRef.value
@@ -171,6 +212,13 @@
             max-width: 1200px;
             height: 100%;
             margin: 0 auto;
+            .free {
+                width: 486px;
+                height: 90px;
+                margin: 40px 0;
+                font-size: 36px;
+                border-radius: 22px;
+            }
             .row1 {
                 font-size: 60px;
                 font-weight: bold;
@@ -178,8 +226,7 @@
                 word-break: break-all;
             }
             .row2 {
-                font-size: 20px;
-                font-weight: 500;
+                font-size: 16px;
                 color: #00796b;
             }
         }
@@ -188,6 +235,11 @@
         max-width: 1200px;
         margin: 0 auto;
         margin-top: 40px;
+        .container-title {
+            margin: 40px 0;
+            font-size: 26px;
+            color: #00796b;
+        }
         .tip {
             font-size: 14px;
             color: $color-text-secondary;
@@ -203,6 +255,45 @@
             margin-bottom: 80px;
             img {
                 max-width: 45%;
+            }
+        }
+        .stripe {
+            padding: 40px 60px;
+            background-color: #00796b;
+            border-radius: 19px;
+            .item {
+                display: flex;
+                .icon {
+                    width: 254px;
+                    height: 254px;
+                    margin-right: 40px;
+                    border-radius: 19px;
+                }
+                .info {
+                    color: #ffffff;
+                    .name {
+                        font-size: 36px;
+                        .name-tip {
+                            margin-left: 10px;
+                            font-size: 24px;
+                        }
+                    }
+                    .content {
+                        margin-top: 10px;
+                        font-size: 22px;
+                        font-weight: 200;
+                    }
+                    .stripe-btn {
+                        width: 163px;
+                        margin: 30px 0 10px;
+                        color: #00796b;
+                    }
+                    .hint {
+                        font-size: 16px;
+                        font-weight: 200;
+                        color: #8bc34a;
+                    }
+                }
             }
         }
     }
