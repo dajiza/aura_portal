@@ -99,12 +99,6 @@
     import { ref } from 'vue';
     import { message } from 'ant-design-vue';
     import axios from 'axios';
-    import { createClient as createPropelAuthClient } from '@propelauth/javascript';
-
-    const authClient = createPropelAuthClient({
-        authUrl: 'https://www.aura-cure.com',
-        enableBackgroundTokenRefresh: true,
-    });
 
     let spinning = ref(false);
     // let email = ref('');
@@ -128,7 +122,7 @@
     const formRef = ref();
 
     const gotoSign = async () => {
-        authClient.redirectToSignupPage();
+        window.open('https://auth.aura-cure.com/en/signup', '_blank');
     };
     // const submitEmail = async () => {
     //     if (!email.value) {
