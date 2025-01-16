@@ -105,6 +105,7 @@
         authUrl: import.meta.env.VITE_APP_PROPELAUTH_URL,
         enableBackgroundTokenRefresh: true,
     });
+    console.log('🚀 ~ import.meta.env.VITE_APP_PROPELAUTH_URL:', import.meta.env.VITE_APP_PROPELAUTH_URL);
 
     let spinning = ref(false);
     // let email = ref('');
