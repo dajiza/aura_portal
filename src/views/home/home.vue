@@ -11,12 +11,12 @@
                 <div class="row1">EMR Software & Platform</div>
                 <div class="row1">For Acupuncture/TCM Clinics</div>
                 <a-button class="free" type="primary" @click="gotoSign">Try it for FREE</a-button>
-                <div class="row2">And get 25% OFF your subscription by sending us a feature request down below</div>
+                <div class="row2">And get 25% OFF your subscription by contacting us down below</div>
             </div>
         </div>
         <div class="container">
             <div class="container-title">Plans & Pricing</div>
-            <div class="stripe">
+            <div class="stripe stripe-web">
                 <div class="item">
                     <img class="icon" src="/src/assets/img/s1.png" alt="" />
                     <div class="info">
@@ -48,7 +48,36 @@
                     </div>
                 </div>
             </div>
+            <div class="stripe stripe-mobile">
+                <div class="item">
+                    <img class="icon" src="/src/assets/img/s1.png" alt="" />
+                    <div class="info">
+                        <div class="name">5 day free trial</div>
+                        <div class="name-tip">then $45 per month</div>
+                        <a-button class="stripe-btn" @click="gotoSign">Try Solo</a-button>
+                        <div class="content">
+                            Perfect for solo practitioners, offering essential features like patient management, prebuilt TCM note templates, a
+                            comprehensive TCM database, online profile listing, patient portal, and communication tools.
+                        </div>
+                        <div class="hint">Hint: Send us a feature request to receive 25% OFF for your first month subscription.</div>
+                    </div>
+                </div>
+                <div class="item" style="margin-top: 80px">
+                    <img class="icon" src="/src/assets/img/s2.png" alt="" />
+                    <div class="info">
+                        <div class="name">7 day free trial</div>
+                        <div class="name-tip">then $90 per month</div>
+                        <a-button class="stripe-btn" @click="gotoSign">Try Growth</a-button>
+                        <div class="content">
+                            Ideal for ambitious solo practitioners or clinics with multiple practitioners. Enjoy everything in Solo, plus advanced
+                            features like flexible note templates, detailed reports, staff management, billing & sales, and more.
+                        </div>
+                        <div class="hint">Hint: Send us a feature request to receive 25% OFF for your first 3 months subscription.</div>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="container">
             <div class="container-title">Key features</div>
             <div class="tip">TCM Focused EMR Features</div>
@@ -173,6 +202,10 @@
     };
 </script>
 <style lang="scss">
+    .stripe-web,
+    .stripe-mobile {
+        display: none;
+    }
     .ant-spin {
         position: fixed !important;
     }
@@ -217,11 +250,12 @@
                 font-size: 60px;
                 font-weight: bold;
                 color: #00796b;
-                word-break: break-all;
+                text-align: center;
             }
             .row2 {
                 font-size: 16px;
                 color: #00796b;
+                text-align: center;
             }
         }
     }
@@ -313,24 +347,68 @@
     }
 
     @media screen and (width <= 451px) {
+        .stripe-mobile {
+            display: block;
+        }
+        .free {
+            width: 80% !important;
+            width: 216px !important;
+            height: 49px !important;
+            font-size: 22px !important;
+            border-radius: 12px !important;
+        }
         .nav {
             padding: 0 20px;
         }
         .slide {
             padding: 0 20px;
             .row1 {
-                font-size: 46px !important;
-            }
-            .row2 {
-                font-size: 16px !important;
+                font-size: 28px !important;
             }
         }
         .container {
             padding: 0 20px;
+            .stripe {
+                padding: 30px;
+                .item {
+                    flex-direction: column;
+                    width: 100%;
+                    .icon {
+                        width: 114px;
+                        height: 114px;
+                    }
+                    .info {
+                        margin-top: 20px;
+                        .name {
+                            font-size: 18px;
+                        }
+                        .name-tip {
+                            margin-top: 10px;
+                            font-size: 16px;
+                        }
+                        .content {
+                            font-size: 16px;
+                        }
+                        .stripe-btn {
+                            margin: 20px 0;
+                        }
+                        .hint {
+                            margin-top: 10px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
         }
         .form-title {
             padding: 0 20px;
             font-size: 24px;
+        }
+    }
+
+    @media screen and (width > 451px) {
+        .stripe-web {
+            display: block;
         }
     }
 </style>
